@@ -1,5 +1,5 @@
 @echo off
-rem Double-click to run Highway Player locally.
+rem Double-click to run PlayList locally.
 rem Starts a small web server in this folder and opens the site in your browser.
 setlocal
 cd /d "%~dp0"
@@ -7,7 +7,7 @@ set "PORT=5500"
 set "URL=http://localhost:%PORT%"
 
 echo.
-echo   Highway Player is starting at %URL%
+echo   PlayList is starting at %URL%
 echo   Keep this window open while you listen. Close it to stop the server.
 echo.
 

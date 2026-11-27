@@ -1,10 +1,12 @@
-/* Highway Player: paste a YouTube / YouTube Music playlist and listen.
+/* PlayList: paste a YouTube / YouTube Music playlist and listen.
    Playback runs through the official YouTube IFrame Player API. */
 (() => {
   'use strict';
 
-  const STORE_KEY = 'highway-player:v1';
-  const TITLE_KEY = 'highway-player:titles:v1';
+  const STORE_KEY = 'playlist-app:v1';
+  const TITLE_KEY = 'playlist-app:titles:v1';
+  const LEGACY_STORE_KEY = 'highway-player:v1';        // keep data saved under the old name
+  const LEGACY_TITLE_KEY = 'highway-player:titles:v1';
   const SAMPLE = {
     url: 'https://music.youtube.com/playlist?list=PLgObA3pAqvOh87Z03QG8Z4xE-uqlAWSBy',
     name: 'Desi highway mix',
@@ -40,9 +42,9 @@
 
   const state = Object.assign(
     { playlists: [], activeId: null, volume: 80, shuffle: false, loop: true },
-    readJSON(STORE_KEY, {})
+    readJSON(STORE_KEY, null) ?? readJSON(LEGACY_STORE_KEY, {})
   );
-  const titles = readJSON(TITLE_KEY, {});
+  const titles = readJSON(TITLE_KEY, null) ?? readJSON(LEGACY_TITLE_KEY, {});
   const save = () => writeJSON(STORE_KEY, state);
   let titleSaveTimer = 0;
   const saveTitles = () => {
@@ -237,7 +239,7 @@
     els.queueCount.textContent = '';
     queueKey = '';
     currentVideo = null;
-    document.title = 'Highway Player: your playlists, one tap away';
+    document.title = 'PlayList: your playlists, one tap away';
     setPlayingUI(false);
     setRange(els.seek, 0);
     els.cur.textContent = els.dur.textContent = '0:00';
@@ -360,7 +362,7 @@
       setTrackTitle(id, data.title);
     }
     if (id !== currentVideo || data.title) {
-      document.title = data.title ? `${data.title} · Highway Player` : 'Highway Player';
+      document.title = data.title ? `${data.title} · PlayList` : 'PlayList';
       updateMediaSession(id, data);
     }
     currentVideo = id;
@@ -371,7 +373,7 @@
     navigator.mediaSession.metadata = new MediaMetadata({
       title: data.title,
       artist: data.author || '',
-      album: active()?.name || 'Highway Player',
+      album: active()?.name || 'PlayList',
       artwork: [{ src: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`, sizes: '480x360', type: 'image/jpeg' }],
     });
   }

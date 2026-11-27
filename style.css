@@ -51,11 +51,13 @@ svg.stroke { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: 
   font-weight: 700; letter-spacing: -.01em; text-decoration: none; color: var(--text);
 }
 .brand-mark {
-  display: grid; place-items: center;
-  width: 32px; height: 32px; border-radius: 10px;
-  background: var(--accent); color: var(--accent-ink);
+  width: 36px; height: 36px;
+  filter: drop-shadow(0 6px 16px rgba(255, 150, 30, .3));
+  transition: transform .2s;
 }
-.brand-mark svg { width: 18px; height: 18px; }
+.brand:hover .brand-mark { transform: rotate(-6deg) scale(1.05); }
+.wordmark { font-size: 1.2rem; font-weight: 800; letter-spacing: -.03em; }
+.wordmark span { color: var(--accent); }
 
 .ghost-btn {
   display: inline-flex; align-items: center; gap: 8px;

@@ -1,10 +1,10 @@
 #!/usr/bin/env sh
-# Run Highway Player locally on macOS or Linux: ./start.sh
+# Run PlayList locally on macOS or Linux: ./start.sh
 cd "$(dirname "$0")" || exit 1
 PORT="${PORT:-5500}"
 URL="http://localhost:$PORT"
 
-echo "Highway Player is starting at $URL (press Ctrl+C to stop)"
+echo "PlayList is starting at $URL (press Ctrl+C to stop)"
 
 ( sleep 2
   if command -v open >/dev/null 2>&1; then open "$URL"

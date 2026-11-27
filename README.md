@@ -1,4 +1,6 @@
-# Highway Player
+<p align="center"><img src="logo.svg" width="96" alt="PlayList logo"></p>
+
+# PlayList
 
 A one-page web player. Paste a YouTube or YouTube Music playlist link and listen in the browser. There is no backend, no account and no build step.
 
